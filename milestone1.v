@@ -82,17 +82,16 @@ module datapath(reset_n, clk, select, xin, yin, go0, go1, x, y, colour);
 	output reg [2:0] colour;
 	output reg [7:0] x;
 	output reg [6:0] y;
-	
+
 	wire next0, next1, next2, next3;
 	wire [7:0] x0, x1, x2, x3;
 	wire [6:0] y0, y1, y2, y3;
 	wire [2:0] colour0, colour1, colour2, colour3;
-	wire writeEn0, writeEn1, writeEn2, writeEn3;
 	drawCards dc(.reset_n(reset_n), .clk(clk), .x(x0), .y(y0), .colour(colour0), .writeEn(writeEn0), .next(next0));
-	wire [5:0] counter;
-	drawSymbol1 ds1(.clk(clk), .reset_n(reset_n), .in(next0), .x(xin), .y(yin), .xout(x1), .yout(y1), .colour(colour1), .next(next1));
-	drawSymbol2 ds2(.clk(clk), .reset_n(reset_n), .in(next0), .x(xin), .y(yin), .xout(x2), .yout(y2), .colour(colour2), .next(next2));
-	drawSymbol3 ds3(.clk(clk), .reset_n(reset_n), .in(next0), .x(xin), .y(yin), .xout(x3), .yout(y3), .colour(colour3), .next(next3));
+	drawSymbol1 ds1(.clk(clk), .reset_n(reset_n), .in(1'b1), .x(xin), .y(yin), .xout(x1), .yout(y1), .colour(colour1), .next(next1));
+	drawSymbol2 ds2(.clk(clk), .reset_n(reset_n), .in(1'b1), .x(xin), .y(yin), .xout(x2), .yout(y2), .colour(colour2), .next(next2));
+	drawSymbol3 ds3(.clk(clk), .reset_n(reset_n), .in(1'b1), .x(xin), .y(yin), .xout(x3), .yout(y3), .colour(colour3), .next(next3));
+	
 	
 	always @(posedge clk or negedge reset_n)
 	begin
@@ -167,9 +166,6 @@ module control(reset_n, clk, go0, go1, select, xout, yout, writeEn);
 				  S_DRAWSYMBOL8 = 4'b1000,
 				  S_DRAWSYMBOL9 = 4'b1001,
 				  S_DONE = 4'b1010;
-	
-	wire[1:0] rand;
-	randomGenerate2bits r0(.clk(clk), .reset_n(reset_n), .go1(go1), .go0(go0), .rand(rand));
 	always @(*)
 	begin: state_table
 		case(current_state)
@@ -200,69 +196,79 @@ module control(reset_n, clk, go0, go1, select, xout, yout, writeEn);
 			end
 			S_DRAWSYMBOL1: 
 			begin
-				select = {0,rand};
+				select = 3'b001;
+//				gorandom = 1;
 				xout <= 8'd50;
 				yout <= 7'd30;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL2: 
 			begin
-				select = {0,rand};
+				select = 3'b010;
+//				gorandom = 1;
 				xout <= 8'd70;
 				yout <= 7'd30;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL3: 
 			begin
-				select = {0,rand};
+				select = 3'b011;
+//				gorandom = 1;
 				xout <= 8'd90;
 				yout <= 7'd30;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL4: 
 			begin
-				select = {0,rand};
+				select = 3'b001;
+//				gorandom = 1;
 				xout <= 8'd50;
 				yout <= 7'd50;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL5: 
 			begin
-				select = {0,rand};
+				select = 3'b010;
+//				gorandom = 1;
 				xout <= 8'd70;
 				yout <= 7'd50;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL6: 
 			begin
-				select = {0,rand};
+				select = 3'b011;
+//				gorandom = 1;
 				xout <= 8'd90;
 				yout <= 7'd50;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL7: 
 			begin
-				select = {0,rand};
+				select = 3'b001;
+//				gorandom = 1;
 				xout <= 8'd50;
 				yout <= 7'd70;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL8: 
-			begin				
-				select = {0,rand};
+			begin
+				select = 3'b010;
+//				gorandom = 1;
 				xout <= 8'd70;
 				yout <= 7'd70;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL9: 
 			begin
-				select = {0,rand};
+				select = 3'b011;
+//				gorandom = 1;
 				xout <= 8'd90;
 				yout <= 7'd70;
 				writeEn = 1'b1;
 			end
 			default: begin
-				select = {0,rand};
+				select = 3'b000;
+//				gorandom = 0;
 				xout <= 8'd0;
 				yout <= 7'd0;
 				writeEn = 1'b0;
@@ -279,4 +285,3 @@ module control(reset_n, clk, go0, go1, select, xout, yout, writeEn);
 	end
 
 endmodule
-
