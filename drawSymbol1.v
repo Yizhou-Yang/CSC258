@@ -1,4 +1,4 @@
-module drawSymbol1(clk, reset_n, in, x, y, xout, yout, colour, next);
+module drawSymbol1(clk, reset_n, in, x, y, xout, yout, colour, next, counter_out);
 	input clk, reset_n, in;
 	input [7:0] x;
 	input [6:0] y;
@@ -6,6 +6,7 @@ module drawSymbol1(clk, reset_n, in, x, y, xout, yout, colour, next);
 	output reg [6:0] yout;
 	output reg [2:0] colour;
 	output next;
+	output [5:0] counter_out;
 	
 	wire finish;
 	reg[1:0] rand;
@@ -18,7 +19,6 @@ module drawSymbol1(clk, reset_n, in, x, y, xout, yout, colour, next);
 			colour = 3'b011;
 	end
 	
-	wire [5:0] counter_out;
 	counter1 c0(.in(in), .clock(clk), .clear_b(reset_n), .out(counter_out), .carryout(next));
 	reg [3:0] xadd, yadd;
 	always @(*)
@@ -167,7 +167,6 @@ module drawSymbol1(clk, reset_n, in, x, y, xout, yout, colour, next);
 			6'b100100: begin
 				xadd = 4'd2;
 				yadd = 4'd8;
-				next = 1;
 			end
 			default: begin
 				xadd = 4'd2;
@@ -194,7 +193,7 @@ endmodule
 module counter1(in, clock, clear_b, out, carryout);
 	input in, clock, clear_b;
 	output [5:0] out;
-	output carryout;
+	output reg carryout;
 	
 	wire in1, in2, in3,in4,in5;
 	wire [5:0] q;
@@ -205,23 +204,37 @@ module counter1(in, clock, clear_b, out, carryout);
 	assign in4 = in3 & q[3];
 	assign in5 = in4 & q[4];
 	
-	flipflop ff0(.in(in), .clock(clock), .reset_n(clear_b && in), .out(q[0]));
-	flipflop ff1(.in(in1), .clock(clock), .reset_n(clear_b && in), .out(q[1]));
-	flipflop ff2(.in(in2), .clock(clock), .reset_n(clear_b && in), .out(q[2]));
-	flipflop ff3(.in(in3), .clock(clock), .reset_n(clear_b && in), .out(q[3]));
-	flipflop ff4(.in(in4), .clock(clock), .reset_n(clear_b && in), .out(q[4]));
-	flipflop ff5(.in(in5), .clock(clock), .reset_n(clear_b && in), .out(q[5]));
-	
+	flipflop2 ff0(.in(in), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[0]));
+	flipflop2 ff1(.in(in1), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[1]));
+	flipflop2 ff2(.in(in2), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[2]));
+	flipflop2 ff3(.in(in3), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[3]));
+	flipflop2 ff4(.in(in4), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[4]));
+	flipflop2 ff5(.in(in5), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[5]));
+
 	assign out = q[5:0];
 	
 	always @(*)
 	begin
-		if(out == 6'b110011)
-		begin
+		if(q == 6'b110011)
 			carryout = 1;
-			q = 6'b000000;
-		end
 		else
 			carryout = 0;
+	end
+
+endmodule
+
+module flipflop2(in, clock, reset_n, finish, out);
+	input in, clock, reset_n, finish;
+	output reg out;
+	
+	always @(posedge clock or negedge reset_n)
+	begin
+		if(reset_n == 1'b0 || finish == 1'b1)
+			out <= 0;
+		else
+			if(in == 1'b1)
+				out <= ~out;
+			else
+				out <= out;
 	end
 endmodule
