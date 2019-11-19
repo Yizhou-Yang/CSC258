@@ -150,8 +150,8 @@ module drawSymbol3(clk, reset_n, in, x, y, xout, yout, colour, next);
 				yadd = 4'd0;
 			end
 			default: begin
-				xadd = 4'd8;
-				yadd = 4'd9;
+				xadd = 4'd0;
+				yadd = 4'd0;
 			end
 		endcase
 	end
@@ -194,5 +194,13 @@ module counter3(in, clock, clear_b, out, carryout);
 	flipflop ff5(.in(in5), .clock(clock), .reset_n(clear_b && in), .out(q[5]));
 	
 	assign out = q[5:0];
-	assign carryout = (out == 6'b100000) ? 1'b1 : 1'b0;
+	assign carryout = (out == 6'b110011) ? 1'b1 : 1'b0;
+	
+	always @(*)
+	begin
+		if(out == 6'b110011)
+		begin
+			q = 6'b000000;
+		end
+	end
 endmodule
