@@ -565,8 +565,8 @@ module randomGenerate2bits(clk, go, reset_n, rand);
 				rand <= $random;
 			else
 				rand <= 2'b11;
-				while(rand == 2'b11)
-					rand <= $random;
+//				while(rand == 2'b11)
+//					rand <= $random;
 		end
 	end
 endmodule
