@@ -154,6 +154,8 @@ module control(reset_n, clk, go0, go1, select, xout, yout, writeEn);
 	output reg [2:0] select;
 	output reg writeEn;
 	
+	wire [1:0] rand;
+	randomGenerate2bits r0(.clk(clk), .reset_n(reset_n), .go1(go1), .go0(go0), .rand(rand));
 	reg [3:0] current_state, next_state;
 	localparam S_DRAWCARDS = 4'b0000,
 				  S_DRAWSYMBOL1 = 4'b0001,
@@ -196,79 +198,69 @@ module control(reset_n, clk, go0, go1, select, xout, yout, writeEn);
 			end
 			S_DRAWSYMBOL1: 
 			begin
-				select = 3'b001;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd50;
 				yout <= 7'd30;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL2: 
 			begin
-				select = 3'b010;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd70;
 				yout <= 7'd30;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL3: 
 			begin
-				select = 3'b011;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd90;
 				yout <= 7'd30;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL4: 
 			begin
-				select = 3'b001;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd50;
 				yout <= 7'd50;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL5: 
 			begin
-				select = 3'b010;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd70;
 				yout <= 7'd50;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL6: 
 			begin
-				select = 3'b011;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd90;
 				yout <= 7'd50;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL7: 
 			begin
-				select = 3'b001;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd50;
 				yout <= 7'd70;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL8: 
 			begin
-				select = 3'b010;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd70;
 				yout <= 7'd70;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL9: 
 			begin
-				select = 3'b011;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd90;
 				yout <= 7'd70;
 				writeEn = 1'b1;
 			end
 			default: begin
-				select = 3'b000;
-//				gorandom = 0;
+				select = {0,rand};
 				xout <= 8'd0;
 				yout <= 7'd0;
 				writeEn = 1'b0;

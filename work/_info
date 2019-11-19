@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/y7868/Documents/GitHub/CSC258
 vaddtoxy
-Z1 !s110 1574195104
+Z1 !s110 1574197860
 !i10b 1
 !s100 dYHOheKg9mPQ;jzAOJUZW0
 I1HSi3h89TTAeBZ2nGadK?1
@@ -23,7 +23,7 @@ Z6 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z7 !s108 1574195103.000000
+Z7 !s108 1574197860.000000
 Z8 !s107 random.v|milestone1.v|drawSymbol3.v|drawSymbol2.v|drawSymbol1.v|drawCards.v|
 Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|drawCards.v|drawSymbol1.v|drawSymbol2.v|drawSymbol3.v|milestone1.v|random.v|
 !i113 1
@@ -32,14 +32,14 @@ Z11 tCvgOpt 0
 vcontrol
 R1
 !i10b 1
-!s100 YJCO=Roa[<THU<fFP6jR22
-IzID9`HdW;TKKimS?>Y_c^1
+!s100 O>]>;_;[Pm_1o2B=;PA<P3
+I2eU4=;H<YnHcV]7cdR`>f0
 R2
 R0
-Z12 w1574195026
+Z12 w1574196007
 Z13 8milestone1.v
 Z14 Fmilestone1.v
-Z15 L0 151
+L0 150
 R6
 r1
 !s85 0
@@ -53,14 +53,14 @@ R11
 vcounter1
 R1
 !i10b 1
-!s100 0f?:j4Hz@NHj15[1Y[1nn0
-ITU6I;?3;Q2Of[Sc@:OhZ03
+!s100 =kloV;^:Wk3h5La<Vfgg[0
+IU1@KT1fF?@L]m<YaEBJSM2
 R2
 R0
-Z16 w1574194640
-Z17 8drawSymbol1.v
-Z18 FdrawSymbol1.v
-L0 193
+Z15 w1574196129
+Z16 8drawSymbol1.v
+Z17 FdrawSymbol1.v
+L0 192
 R6
 r1
 !s85 0
@@ -78,9 +78,9 @@ R1
 IT]a=d8HBO_Gz>N?DVF:JF2
 R2
 R0
-Z19 w1574194066
-Z20 8drawSymbol2.v
-Z21 FdrawSymbol2.v
+Z18 w1574194066
+Z19 8drawSymbol2.v
+Z20 FdrawSymbol2.v
 L0 247
 R6
 r1
@@ -99,9 +99,9 @@ R1
 IkoMT=UZElODa3cFh8fGVJ2
 R2
 R0
-Z22 w1574194083
-Z23 8drawSymbol3.v
-Z24 FdrawSymbol3.v
+Z21 w1574194083
+Z22 8drawSymbol3.v
+Z23 FdrawSymbol3.v
 L0 175
 R6
 r1
@@ -137,8 +137,8 @@ R11
 vdatapath
 R1
 !i10b 1
-!s100 51mK;:?;>mWoHTVdBZzHN0
-IH<5HcB>Ggl<nUmYQXKa1N2
+!s100 T8YDTPZTJ^XbUa>d@ia1_2
+If5ih_YoPNPNRePn@[Hi@50
 R2
 R0
 R12
@@ -202,13 +202,13 @@ ndraw@cards
 vdrawSymbol1
 R1
 !i10b 1
-!s100 jkcEgUb1SbD7di3K040Kz3
-ID4>F?6m<3j?8EnJhz4Y4F0
+!s100 E77mnM3_Xi]a9R^bJfaeG3
+IU2>WKd05U00Yb2>[HzOnT2
 R2
 R0
+R15
 R16
 R17
-R18
 L0 1
 R6
 r1
@@ -228,9 +228,9 @@ R1
 IeCCXY]DbSEcfgg>VE9O^I2
 R2
 R0
+R18
 R19
 R20
-R21
 L0 1
 R6
 r1
@@ -250,9 +250,9 @@ R1
 IFogUj1kz;gCTOLb8P^WFG2
 R2
 R0
+R21
 R22
 R23
-R24
 L0 1
 R6
 r1
@@ -297,7 +297,7 @@ R0
 R3
 R4
 R5
-R15
+L0 151
 R6
 r1
 !s85 0
@@ -311,14 +311,14 @@ R11
 vflipflop2
 R1
 !i10b 1
-!s100 Fk>B90NJg77c@]6FIGPm?3
-I=zJ@QlMonE[=I9`6bOHc91
+!s100 685aYEeeD<KCM92;eMliY0
+IO3Y>;>MQX@`9X<d<?zDW@1
 R2
 R0
+R15
 R16
 R17
-R18
-L0 226
+L0 225
 R6
 r1
 !s85 0
@@ -353,11 +353,11 @@ R11
 vrandomGenerate2bits
 R1
 !i10b 1
-!s100 7UXgWA0CLZl=k?XDeQh:]3
-Iba`MieI6F661S=e:FdZBT0
+!s100 ^4Z44=0g3ICmJDV3EcR9d2
+Im?Ai;@[[1I9QCG?cH7HI73
 R2
 R0
-w1574193039
+w1574197619
 8random.v
 Frandom.v
 L0 1
