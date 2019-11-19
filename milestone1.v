@@ -59,8 +59,7 @@ module datapathControl(reset_n, clk, x, y, colour, writeEn);
 			.go1(go1), 
 			.x(x), 
 			.y(y), 
-			.colour(colour), 
-			.writeEn(writeEn));
+			.colour(colour));
 			
 	control ctr(
 			.reset_n(reset_n), 
@@ -70,11 +69,11 @@ module datapathControl(reset_n, clk, x, y, colour, writeEn);
 			.select(select), 
 			.xout(xin), 
 			.yout(yin), 
-			.writeEn());
+			.writeEn(writeEn));
 	
 endmodule
 
-module datapath(reset_n, clk, select, xin, yin, go0, go1, x, y, colour, writeEn);
+module datapath(reset_n, clk, select, xin, yin, go0, go1, x, y, colour);
 	input reset_n, clk;
 	input [1:0] select;
 	input [7:0] xin;
@@ -83,7 +82,6 @@ module datapath(reset_n, clk, select, xin, yin, go0, go1, x, y, colour, writeEn)
 	output reg [2:0] colour;
 	output reg [7:0] x;
 	output reg [6:0] y;
-	output reg writeEn;
 	
 	wire next0, next1, next2, next3;
 	wire [7:0] x0, x1, x2, x3;
@@ -91,6 +89,7 @@ module datapath(reset_n, clk, select, xin, yin, go0, go1, x, y, colour, writeEn)
 	wire [2:0] colour0, colour1, colour2, colour3;
 	wire writeEn0, writeEn1, writeEn2, writeEn3;
 	drawCards dc(.reset_n(reset_n), .clk(clk), .x(x0), .y(y0), .colour(colour0), .writeEn(writeEn0), .next(next0));
+	wire [5:0] counter;
 	drawSymbol1 ds1(.clk(clk), .reset_n(reset_n), .in(next0), .x(xin), .y(yin), .xout(x1), .yout(y1), .colour(colour1), .next(next1));
 	drawSymbol2 ds2(.clk(clk), .reset_n(reset_n), .in(next0), .x(xin), .y(yin), .xout(x2), .yout(y2), .colour(colour2), .next(next2));
 	drawSymbol3 ds3(.clk(clk), .reset_n(reset_n), .in(next0), .x(xin), .y(yin), .xout(x3), .yout(y3), .colour(colour3), .next(next3));
@@ -104,7 +103,6 @@ module datapath(reset_n, clk, select, xin, yin, go0, go1, x, y, colour, writeEn)
 			y = 7'b0000000;
 			go0 = 0;
 			go1 = 0;
-			writeEn = 0;
 		end
 		else
 		begin
@@ -122,30 +120,37 @@ module datapath(reset_n, clk, select, xin, yin, go0, go1, x, y, colour, writeEn)
 				x <= x1;
 				y <= y1;
 				colour <= colour1;
-				go1 <= next1;
+				if(next1 == 1)
+					go1 <= next1;
+				else
+					go1 <= 0;
 			end
 			2'b10: begin
 				x <= x2;
 				y <= y2;
 				colour <= colour2;
-				go1 <= next2;
+				if(next2 == 1)
+					go1 <= next2;
+				else
+					go1 <= 0;
 			end
 			2'b11: begin
 				x <= x3;
 				y <= y3;
 				colour <= colour3;
-				go1 <= next3;
+				if(next3 == 1)
+					go1 <= next3;
+				else
+					go1 <= 0;
 			end
 			endcase
 		end
 	end
 endmodule
-
-module control(reset_n, clk, go0, go1, select, xout, yout, stateout, writeEn);
+module control(reset_n, clk, go0, go1, select, xout, yout, writeEn);
 	input reset_n, clk, go0, go1;
 	output reg [7:0] xout;
 	output reg [6:0] yout;
-	output reg [3:0] stateout;
 	output reg [1:0] select;
 	output reg writeEn;
 	
@@ -274,15 +279,9 @@ module control(reset_n, clk, go0, go1, select, xout, yout, stateout, writeEn);
 	always @(posedge clk)
 	begin
 		if(reset_n == 1'b0)
-		begin
 			current_state <= S_DRAWCARDS;
-			stateout <= S_DRAWCARDS;
-		end
 		else
-		begin
 			current_state <= next_state;
-			stateout <= next_state;
-		end
 	end
 
 endmodule

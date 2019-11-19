@@ -258,22 +258,18 @@ module counter2(in, clock, clear_b, out, carryout);
 	assign in4 = in3 & q[3];
 	assign in5 = in4 & q[4];
 	
-	flipflop ff0(.in(in), .clock(clock), .reset_n(clear_b && in), .out(q[0]));
-	flipflop ff1(.in(in1), .clock(clock), .reset_n(clear_b && in), .out(q[1]));
-	flipflop ff2(.in(in2), .clock(clock), .reset_n(clear_b && in), .out(q[2]));
-	flipflop ff3(.in(in3), .clock(clock), .reset_n(clear_b && in), .out(q[3]));
-	flipflop ff4(.in(in4), .clock(clock), .reset_n(clear_b && in), .out(q[4]));
-	flipflop ff5(.in(in5), .clock(clock), .reset_n(clear_b && in), .out(q[5]));
-	
+	flipflop2 ff0(.in(in), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[0]));
+	flipflop2 ff1(.in(in1), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[1]));
+	flipflop2 ff2(.in(in2), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[2]));
+	flipflop2 ff3(.in(in3), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[3]));
+	flipflop2 ff4(.in(in4), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[4]));
+	flipflop2 ff5(.in(in5), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[5]));
 	assign out = q[5:0];
 	
 	always @(*)
 	begin
-		if(out == 6'b110011)
-		begin
+		if(q == 6'b110011)
 			carryout = 1;
-			q = 6'b000000;
-		end
 		else
 			carryout = 0;
 	end
