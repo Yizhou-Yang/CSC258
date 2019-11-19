@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/y7868/Documents/GitHub/CSC258
 vaddtoxy
-Z1 !s110 1574177838
+Z1 !s110 1574180164
 !i10b 1
 !s100 dYHOheKg9mPQ;jzAOJUZW0
 I1HSi3h89TTAeBZ2nGadK?1
@@ -23,23 +23,23 @@ Z6 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z7 !s108 1574177837.000000
-Z8 !s107 milestone1.v|drawSymbol3.v|drawSymbol2.v|drawSymbol1.v|drawCards.v|
-Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|drawCards.v|drawSymbol1.v|drawSymbol2.v|drawSymbol3.v|milestone1.v|
+Z7 !s108 1574180164.000000
+Z8 !s107 random.v|milestone1.v|drawSymbol3.v|drawSymbol2.v|drawSymbol1.v|drawCards.v|
+Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|drawCards.v|drawSymbol1.v|drawSymbol2.v|drawSymbol3.v|milestone1.v|random.v|
 !i113 1
 Z10 o-timescale 1ns/1ns
 Z11 tCvgOpt 0
 vcontrol
 R1
 !i10b 1
-!s100 ZS<bGD3nG_9B:SO_I>NP22
-IPTSf1D9bVE>`Ag<cah[712
+!s100 _IIo<?IU9YC@BU:N=o_]U3
+IX;;4U>Rd49[;15YcWU?CZ3
 R2
 R0
-R3
-Z12 8milestone1.v
-Z13 Fmilestone1.v
-L0 392
+Z12 w1574180158
+Z13 8milestone1.v
+Z14 Fmilestone1.v
+L0 144
 R6
 r1
 !s85 0
@@ -51,7 +51,7 @@ R9
 R10
 R11
 vcounter1
-R1
+Z15 !s110 1574177838
 !i10b 1
 !s100 b=FQ1]b0Jjb`;_N53kWCK2
 IEHO8G91Qzh5zfHhj]:0^;3
@@ -65,51 +65,51 @@ R6
 r1
 !s85 0
 31
-R7
-R8
-R9
+Z16 !s108 1574177837.000000
+Z17 !s107 milestone1.v|drawSymbol3.v|drawSymbol2.v|drawSymbol1.v|drawCards.v|
+Z18 !s90 -reportprogress|300|-timescale|1ns/1ns|drawCards.v|drawSymbol1.v|drawSymbol2.v|drawSymbol3.v|milestone1.v|
 !i113 1
 R10
 R11
 vcounter2
-R1
+R15
 !i10b 1
 !s100 If?:c_YaMcX:imZ`WN_S;0
 I`8VZTQ4mUgZG0;J?T?5jm0
 R2
 R0
-Z14 w1574177548
-Z15 8drawSymbol2.v
-Z16 FdrawSymbol2.v
+w1574177548
+Z19 8drawSymbol2.v
+Z20 FdrawSymbol2.v
 L0 247
 R6
 r1
 !s85 0
 31
-R7
-R8
-R9
+R16
+R17
+R18
 !i113 1
 R10
 R11
 vcounter3
-R1
+R15
 !i10b 1
 !s100 9igQBZA1^7>>Sejb2eEoj0
 IG?N[MmNTaAkoHc@3_fIik3
 R2
 R0
 R3
-Z17 8drawSymbol3.v
-Z18 FdrawSymbol3.v
+Z21 8drawSymbol3.v
+Z22 FdrawSymbol3.v
 L0 175
 R6
 r1
 !s85 0
 31
-R7
-R8
-R9
+R16
+R17
+R18
 !i113 1
 R10
 R11
@@ -137,14 +137,14 @@ R11
 vdatapath
 R1
 !i10b 1
-!s100 =iBZlE[82@Z5dPI0O1:=51
-IGYT<db74?SI7i@7efUI=53
+!s100 a[YRzERX6@Sle]o;5VgYM3
+II^Ezcc>n43ZZ[L<CK0WQk3
 R2
 R0
-R3
 R12
 R13
-L0 182
+R14
+L0 77
 R6
 r1
 !s85 0
@@ -158,14 +158,14 @@ R11
 vdatapathControl
 R1
 !i10b 1
-!s100 ACUdeA<G[Da;PT2E[llIM3
-I5d;o0JBE2n[E<ZLULL>aG3
+!s100 >Z07W7QEOMJjhdf>0gY<K3
+IcOC]INJB0;VbDSMK`FYo>2
 R2
 R0
-R3
 R12
 R13
-L0 125
+R14
+L0 41
 R6
 r1
 !s85 0
@@ -202,13 +202,13 @@ ndraw@cards
 vdrawSymbol2
 R1
 !i10b 1
-!s100 GF@JnUYZ`@`l`^5W5ERlQ0
-IYcaEGYT_9]eSiSiKNhO@>3
+!s100 @`mMBMgkz=PJ2IYB8XT=Z2
+IeCCXY]DbSEcfgg>VE9O^I2
 R2
 R0
-R14
-R15
-R16
+Z23 w1574178326
+R19
+R20
 L0 1
 R6
 r1
@@ -224,13 +224,13 @@ ndraw@symbol2
 vdrawSymbol3
 R1
 !i10b 1
-!s100 9`997Sem8a_>VI0KYncdS1
-I3ZOU]2bdh^;akOO3U1FTo1
+!s100 PgHi;mLKnMUc3ocZJfnI^2
+IFogUj1kz;gCTOLb8P^WFG2
 R2
 R0
-R3
-R17
-R18
+R23
+R21
+R22
 L0 1
 R6
 r1
@@ -244,23 +244,23 @@ R10
 R11
 ndraw@symbol3
 vdrawSymbols
-R1
+R15
 !i10b 1
 !s100 62ae>>7[6HjRZY8cdKbBQ3
 I5Z?Rm[hn^IKaFPE`CN1j20
 R2
 R0
 R3
-R12
 R13
+R14
 L0 34
 R6
 r1
 !s85 0
 31
-R7
-R8
-R9
+R16
+R17
+R18
 !i113 1
 R10
 R11
@@ -289,13 +289,13 @@ R11
 vmilestone1
 R1
 !i10b 1
-!s100 ;U8fdT8l>;<SkdYJ_8`@Q1
-I^zmf4::lB6X;:Qi<5ageI1
+!s100 e:AYDbfFn1<0RGVKJUg2b2
+Ii56FaX3PE@ZjOV13@nOS73
 R2
 R0
-R3
 R12
 R13
+R14
 L0 1
 R6
 r1
@@ -308,23 +308,23 @@ R9
 R10
 R11
 vrandomGenerate2bits
-R1
+!s110 1574185387
 !i10b 1
-!s100 M[4N3HOKPd=;S<dQ4ClF71
-If21h==i9dcVZe;]VaE@bS3
+!s100 _e2:>[DOnaeICE[1z3J6E2
+IVZ_j0o8Ic=Q2EZjL]mL4O0
 R2
 R0
-R3
-R12
-R13
-L0 554
+w1574185238
+8random.v
+Frandom.v
+L0 1
 R6
 r1
 !s85 0
 31
-R7
-R8
-R9
+!s108 1574185387.000000
+!s107 random.v|
+!s90 -reportprogress|300|-timescale|1ns/1ns|random.v|
 !i113 1
 R10
 R11

@@ -142,7 +142,7 @@ module datapath(reset_n, clk, select, xin, yin, go0, go1, x, y, colour, writeEn)
 endmodule
 
 module control(reset_n, clk, go0, go1, select, xout, yout, stateout, writeEn);
-	input reset_n, clk, go0, go1, go2, go3, go4, go5, go6, go7, go8, go9;
+	input reset_n, clk, go0, go1;
 	output reg [7:0] xout;
 	output reg [6:0] yout;
 	output reg [3:0] stateout;
@@ -287,21 +287,3 @@ module control(reset_n, clk, go0, go1, select, xout, yout, stateout, writeEn);
 
 endmodule
 
-module randomGenerate2bits(clk, reset_n, rand);
-	input clk,reset_n;
-	output reg[1:0] rand;
-	
-	seed = $get_initial_random_seed()
-	always @(posedge clk or negedge reset_n)
-	begin
-		if(!reset_n)
-			rand <= 2'd0;
-		
-		else
-		begin
-			rand = $random(seed);
-			while(rand == 2'b11)
-				rand = $random(seed);
-		end
-	end
-endmodule
