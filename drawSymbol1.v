@@ -6,7 +6,6 @@ module drawSymbol1(clk, reset_n, in, x, y, xout, yout, colour, next);
 	output reg [6:0] yout;
 	output reg [2:0] colour;
 	output next;
-	wire [5:0] counter_out;
 	
 	wire finish;
 	reg[1:0] rand;
@@ -18,7 +17,7 @@ module drawSymbol1(clk, reset_n, in, x, y, xout, yout, colour, next);
 		else
 			colour = 3'b011;
 	end
-	
+	wire [5:0] counter_out;
 	counter1 c0(.in(in), .clock(clk), .clear_b(reset_n), .out(counter_out), .carryout(next));
 	reg [3:0] xadd, yadd;
 	always @(*)
