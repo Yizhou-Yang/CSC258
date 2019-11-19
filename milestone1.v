@@ -89,6 +89,7 @@ module datapath(reset_n, clk, select, xin, yin, go0, go1, x, y, colour);
 	wire [2:0] colour0, colour1, colour2, colour3;
 	wire writeEn0, writeEn1, writeEn2, writeEn3;
 	drawCards dc(.reset_n(reset_n), .clk(clk), .x(x0), .y(y0), .colour(colour0), .writeEn(writeEn0), .next(next0));
+	wire [5:0] counter;
 	drawSymbol1 ds1(.clk(clk), .reset_n(reset_n), .in(next0), .x(xin), .y(yin), .xout(x1), .yout(y1), .colour(colour1), .next(next1));
 	drawSymbol2 ds2(.clk(clk), .reset_n(reset_n), .in(next0), .x(xin), .y(yin), .xout(x2), .yout(y2), .colour(colour2), .next(next2));
 	drawSymbol3 ds3(.clk(clk), .reset_n(reset_n), .in(next0), .x(xin), .y(yin), .xout(x3), .yout(y3), .colour(colour3), .next(next3));
