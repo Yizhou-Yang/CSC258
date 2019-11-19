@@ -290,6 +290,8 @@ endmodule
 module randomGenerate2bits(clk, reset_n, rand);
 	input clk,reset_n;
 	output reg[1:0] rand;
+	
+	seed = $get_initial_random_seed()
 	always @(posedge clk or negedge reset_n)
 	begin
 		if(!reset_n)
@@ -297,9 +299,9 @@ module randomGenerate2bits(clk, reset_n, rand);
 		
 		else
 		begin
-			rand = $random;
+			rand = $random(seed);
 			while(rand == 2'b11)
-				rand = $random;
+				rand = $random(seed);
 		end
 	end
 endmodule
