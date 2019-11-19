@@ -47,7 +47,7 @@ module datapathControl(reset_n, clk, x, y, colour, writeEn);
 	
 	wire [7:0] xin;
 	wire [6:0] yin;
-	wire [1:0] select;
+	wire [2:0] select;
 	wire go0, go1;
 	datapath dp(
 			.reset_n(reset_n), 
@@ -75,7 +75,7 @@ endmodule
 
 module datapath(reset_n, clk, select, xin, yin, go0, go1, x, y, colour);
 	input reset_n, clk;
-	input [1:0] select;
+	input [2:0] select;
 	input [7:0] xin;
 	input [6:0] yin;
 	output reg go0, go1;
@@ -107,7 +107,7 @@ module datapath(reset_n, clk, select, xin, yin, go0, go1, x, y, colour);
 		else
 		begin
 			case (select)
-			2'b00: begin
+			3'b000: begin
 				x <= x0;
 				y <= y0;
 				colour <= colour0;
@@ -116,7 +116,7 @@ module datapath(reset_n, clk, select, xin, yin, go0, go1, x, y, colour);
 				else
 					go0 <= 0;
 				end
-			2'b01: begin
+			3'b001: begin
 				x <= x1;
 				y <= y1;
 				colour <= colour1;
@@ -125,7 +125,7 @@ module datapath(reset_n, clk, select, xin, yin, go0, go1, x, y, colour);
 				else
 					go1 <= 0;
 			end
-			2'b10: begin
+			3'b010: begin
 				x <= x2;
 				y <= y2;
 				colour <= colour2;
@@ -134,7 +134,7 @@ module datapath(reset_n, clk, select, xin, yin, go0, go1, x, y, colour);
 				else
 					go1 <= 0;
 			end
-			2'b11: begin
+			3'b011: begin
 				x <= x3;
 				y <= y3;
 				colour <= colour3;
@@ -147,11 +147,12 @@ module datapath(reset_n, clk, select, xin, yin, go0, go1, x, y, colour);
 		end
 	end
 endmodule
+
 module control(reset_n, clk, go0, go1, select, xout, yout, writeEn);
 	input reset_n, clk, go0, go1;
 	output reg [7:0] xout;
 	output reg [6:0] yout;
-	output reg [1:0] select;
+	output reg [2:0] select;
 	output reg writeEn;
 	
 	reg [3:0] current_state, next_state;
@@ -166,6 +167,9 @@ module control(reset_n, clk, go0, go1, select, xout, yout, writeEn);
 				  S_DRAWSYMBOL8 = 4'b1000,
 				  S_DRAWSYMBOL9 = 4'b1001,
 				  S_DONE = 4'b1010;
+	
+	wire[1:0] rand;
+	randomGenerate2bits r0(.clk(clk), .reset_n(reset_n), .go1(go1), .go0(go0), .rand(rand));
 	always @(*)
 	begin: state_table
 		case(current_state)
@@ -189,86 +193,76 @@ module control(reset_n, clk, go0, go1, select, xout, yout, writeEn);
 		case(current_state)
 			S_DRAWCARDS:
 			begin
-				select = 2'b00;
+				select = 3'b000;
 				xout <= 8'd0;
 				yout <= 7'd0;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL1: 
 			begin
-				select = 2'b01;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd50;
 				yout <= 7'd30;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL2: 
 			begin
-				select = 2'b10;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd70;
 				yout <= 7'd30;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL3: 
 			begin
-				select = 2'b11;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd90;
 				yout <= 7'd30;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL4: 
 			begin
-				select = 2'b01;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd50;
 				yout <= 7'd50;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL5: 
 			begin
-				select = 2'b10;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd70;
 				yout <= 7'd50;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL6: 
 			begin
-				select = 2'b11;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd90;
 				yout <= 7'd50;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL7: 
 			begin
-				select = 2'b01;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd50;
 				yout <= 7'd70;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL8: 
-			begin
-				select = 2'b10;
-//				gorandom = 1;
+			begin				
+				select = {0,rand};
 				xout <= 8'd70;
 				yout <= 7'd70;
 				writeEn = 1'b1;
 			end
 			S_DRAWSYMBOL9: 
 			begin
-				select = 2'b11;
-//				gorandom = 1;
+				select = {0,rand};
 				xout <= 8'd90;
 				yout <= 7'd70;
 				writeEn = 1'b1;
 			end
 			default: begin
-				select = 2'b00;
-//				gorandom = 0;
+				select = {0,rand};
 				xout <= 8'd0;
 				yout <= 7'd0;
 				writeEn = 1'b0;

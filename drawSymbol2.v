@@ -247,7 +247,7 @@ endmodule
 module counter2(in, clock, clear_b, out, carryout);
 	input in, clock, clear_b;
 	output [5:0] out;
-	output carryout;
+	output reg carryout;
 	
 	wire in1, in2, in3,in4,in5;
 	wire [5:0] q;

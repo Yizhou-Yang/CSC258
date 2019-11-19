@@ -1,11 +1,14 @@
-module randomGenerate2bits(clk, reset_n, go1, rand);
-	input clk,reset_n,go1;
+module randomGenerate2bits(clk, reset_n, go1, go0, rand);
+	input clk,reset_n,go1, go0;
 	output reg[1:0] rand;
  
 	reg [2:0] random, random_next;
 	reg [1:0] counter11,counter12,counter13;
 	reg [1:0] counter2;
 	wire feedback; 
+	
+	reg lock;
+	
 	assign feedback = random[2] ^ random[1]; 
 	always @ (posedge clk or negedge reset_n)
 		begin
@@ -16,6 +19,7 @@ module randomGenerate2bits(clk, reset_n, go1, rand);
 				counter11 <= 3'd0;
 				counter12 <= 3'd0;
 				counter13 <= 3'd0;
+				lock <= 0;
 			end
 			else begin
 				random = random_next;
@@ -29,7 +33,7 @@ module randomGenerate2bits(clk, reset_n, go1, rand);
 				2'b10: counter13= counter13+1;
 				endcase
 			end
-		end		
+		end	
 	
 	always @ (*)
 	begin
@@ -45,6 +49,18 @@ module randomGenerate2bits(clk, reset_n, go1, rand);
 			rand = random[1:0];
 			end
 	  end
+	  if (go0&&lock==0)begin
+				
+			if(random[1:0] == 2'b11)begin
+				rand = counter2;
+			end
+			
+			else begin
+			rand = random[1:0];
+			end
+			lock = 1;
+	  end
+			
 	  if (counter11 == 2'b11&&rand==2'b00)
 			rand = 2'b01;			
 	  if (counter12 == 2'b11&&rand==2'b01)
