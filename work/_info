@@ -351,7 +351,7 @@ R9
 R10
 R11
 vrandomGenerate2bits
-R1
+!s110 1574200439
 !i10b 1
 !s100 ^4Z44=0g3ICmJDV3EcR9d2
 Im?Ai;@[[1I9QCG?cH7HI73
@@ -365,10 +365,32 @@ R6
 r1
 !s85 0
 31
-R7
-R8
-R9
+!s108 1574200439.000000
+!s107 random.v|
+!s90 -reportprogress|300|-timescale|1ns/1ns|random.v|
 !i113 1
 R10
 R11
 nrandom@generate2bits
+vrandomGenerater
+!s110 1574203276
+!i10b 1
+!s100 >478HI@[o0f6SN7T:NmKf0
+I=:KXUFmDlSc95F;U99nQz2
+R2
+R0
+w1574203121
+8random_copy.v
+Frandom_copy.v
+L0 1
+R6
+r1
+!s85 0
+31
+!s108 1574203276.000000
+!s107 random_copy.v|
+!s90 -reportprogress|300|-timescale|1ns/1ns|random_copy.v|
+!i113 1
+R10
+R11
+nrandom@generater
