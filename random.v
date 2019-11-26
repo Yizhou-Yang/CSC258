@@ -26,28 +26,30 @@ module randGen(clk, reset_n, start, rand_out);
 	end
 	
 		always @(*)begin
+				if (counter11 == 3'd3&& rand_in==2'b00) begin
+					rand_in = 2'b01;
+				end
+			  if (counter12 == 3'd3&&rand_in==2'b01) begin
+					rand_in = 2'b10;
+				end
+			  if (counter13 == 3'd3&&rand_in==2'b10) begin
+					rand_in = 2'b00;
+				end
+				if (counter11 == 3'd3&& rand_in==2'b00) begin
+					rand_in = 2'b01;
+				end
+				if (counter12 == 3'd3&&rand_in==2'b01) begin
+					rand_in = 2'b10;
+				end
+		end
+		
+		always @(posedge out) begin
 			if(start && reset_n) begin
-				case(rand)
+				case(rand_in)
 					2'b00: counter11 = counter11+1;
 					2'b01: counter12 = counter12+1;
 					2'b10: counter13 = counter13+1;
 				endcase
-				
-				if (counter11 == 3'd4&& rand_in==2'b00) begin
-					rand_in = 2'b01;
-					counter11 = 3'd3;
-					counter12 = counter12 + 1;
-				end
-			  if (counter12 == 3'd4&&rand_in==2'b01) begin
-					rand_in = 2'b10;
-					counter12 = 3'd3;
-					counter13 = counter12 + 1;
-				end
-			  if (counter13 == 3'd4&&rand_in==2'b10) begin
-					rand_in = 2'b00;
-					counter13 = 3'd3;
-					counter11 = counter12 + 1;
-				end
 			end
 		end
 		
