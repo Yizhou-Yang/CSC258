@@ -6,10 +6,10 @@ vlib work
 # The timescale argument defines default time unit
 # (used when no unit is specified), while the second number
 # defines precision (all times are rounded to this value)
-vlog -timescale 1ns/1ns random.v
+vlog -timescale 1ns/1ns clear.v
 
 # Load simulation using mux as the top level simulation module.
-vsim randGen
+vsim clearCards
 # vsim datapath
 
 # Log all signals and add some signals to waveform window.
@@ -18,9 +18,10 @@ log {/*}
 add wave {/*}
 
 # First test case
-# Set input values using the force command, signal names need to be in {} brackets.
+# Set input values usingthe force command, signal names need to be in {} brackets.
 force {reset_n} 0 0, 1 1
 run 2ns
+force {x0} 0
+force {y0} 0
 force {clk} 1 0, 0 1 -r 2
-force {start} 1 5
-run 500ns
+run 5000ns 
