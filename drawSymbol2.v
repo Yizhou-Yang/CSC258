@@ -228,17 +228,17 @@ module drawSymbol2(clk, reset_n, in, x, y, xout, yout, colour, next);
 		endcase
 	end
 	
-	always @(posedge clk or negedge reset_n)
+	always @(*)
 	begin
 		if(reset_n == 1'b0)
 		begin
-			xout <= x;
-			yout <= y;
+			xout = x;
+			yout = y;
 		end
 		else
 		begin
-			xout <= x + xadd;
-			yout <= y + yadd;
+			xout = x + xadd;
+			yout = y + yadd;
 		end
 	end
 	
@@ -258,19 +258,29 @@ module counter2(in, clock, clear_b, out, carryout);
 	assign in4 = in3 & q[3];
 	assign in5 = in4 & q[4];
 	
-	flipflop2 ff0(.in(in), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[0]));
-	flipflop2 ff1(.in(in1), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[1]));
-	flipflop2 ff2(.in(in2), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[2]));
-	flipflop2 ff3(.in(in3), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[3]));
-	flipflop2 ff4(.in(in4), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[4]));
-	flipflop2 ff5(.in(in5), .clock(clock), .reset_n(clear_b && in), .finish(carryout), .out(q[5]));
+	reg finish;
+	
+	flipflop2 ff0(.in(in), .clock(clock), .reset_n(clear_b && in), .finish(finish), .out(q[0]));
+	flipflop2 ff1(.in(in1), .clock(clock), .reset_n(clear_b && in), .finish(finish), .out(q[1]));
+	flipflop2 ff2(.in(in2), .clock(clock), .reset_n(clear_b && in), .finish(finish), .out(q[2]));
+	flipflop2 ff3(.in(in3), .clock(clock), .reset_n(clear_b && in), .finish(finish), .out(q[3]));
+	flipflop2 ff4(.in(in4), .clock(clock), .reset_n(clear_b && in), .finish(finish), .out(q[4]));
+	flipflop2 ff5(.in(in5), .clock(clock), .reset_n(clear_b && in), .finish(finish), .out(q[5]));
 	assign out = q[5:0];
 	
 	always @(*)
 	begin
-		if(q == 6'b110011)
+		if(q >= 6'b110011 && q < 6'b110100) begin
 			carryout = 1;
-		else
+			finish = 0;
+		end
+		else if(q == 6'b110100) begin
+			carryout = 1;
+			finish = 1;
+		end
+		else begin
 			carryout = 0;
+			finish = 0;
+		end
 	end
 endmodule
