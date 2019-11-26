@@ -72,87 +72,109 @@ Z18 !s90 -reportprogress|300|-timescale|1ns/1ns|drawCards.v|drawSymbol1.v|drawSy
 !i113 1
 R10
 R11
+vCounter
+Z19 !s110 1574789497
+!i10b 1
+!s100 4Yi]hP]Ko9h>^zkPX9?^m3
+I_f7]mAWCRfRz^ZF<86_iJ1
+R2
+R0
+Z20 w1574789494
+Z21 8random.v
+Z22 Frandom.v
+L0 117
+R6
+r1
+!s85 0
+31
+Z23 !s108 1574789497.000000
+Z24 !s107 random.v|
+Z25 !s90 -reportprogress|300|-timescale|1ns/1ns|random.v|
+!i113 1
+R10
+R11
+n@counter
 vcounter1
-Z19 !s110 1574717747
+Z26 !s110 1574717747
 !i10b 1
 !s100 =kloV;^:Wk3h5La<Vfgg[0
 IU1@KT1fF?@L]m<YaEBJSM2
 R2
 R0
-Z20 w1574196129
-Z21 8drawSymbol1.v
-Z22 FdrawSymbol1.v
+Z27 w1574196129
+Z28 8drawSymbol1.v
+Z29 FdrawSymbol1.v
 L0 192
 R6
 r1
 !s85 0
 31
-Z23 !s108 1574717747.000000
-Z24 !s107 random_copy.v|random.v|milestone1.v|drawSymbol3.v|drawSymbol2.v|drawSymbol1.v|drawScore.v|drawCards.v|clear.v|
-Z25 !s90 -reportprogress|300|-timescale|1ns/1ns|clear.v|drawCards.v|drawScore.v|drawSymbol1.v|drawSymbol2.v|drawSymbol3.v|milestone1.v|random.v|random_copy.v|
+Z30 !s108 1574717747.000000
+Z31 !s107 random_copy.v|random.v|milestone1.v|drawSymbol3.v|drawSymbol2.v|drawSymbol1.v|drawScore.v|drawCards.v|clear.v|
+Z32 !s90 -reportprogress|300|-timescale|1ns/1ns|clear.v|drawCards.v|drawScore.v|drawSymbol1.v|drawSymbol2.v|drawSymbol3.v|milestone1.v|random.v|random_copy.v|
 !i113 1
 R10
 R11
 vcounter2
-R19
+R26
 !i10b 1
 !s100 lM@C9[MN?;9i3eR01>FB=1
 IT]a=d8HBO_Gz>N?DVF:JF2
 R2
 R0
-Z26 w1574194066
-Z27 8drawSymbol2.v
-Z28 FdrawSymbol2.v
+Z33 w1574194066
+Z34 8drawSymbol2.v
+Z35 FdrawSymbol2.v
 L0 247
 R6
 r1
 !s85 0
 31
-R23
-R24
-R25
+R30
+R31
+R32
 !i113 1
 R10
 R11
 vcounter3
-R19
+R26
 !i10b 1
 !s100 eo_SXKMUPGG0XP:J>6:>G3
 IkoMT=UZElODa3cFh8fGVJ2
 R2
 R0
-Z29 w1574194083
-Z30 8drawSymbol3.v
-Z31 FdrawSymbol3.v
+Z36 w1574194083
+Z37 8drawSymbol3.v
+Z38 FdrawSymbol3.v
 L0 175
 R6
 r1
 !s85 0
 31
-R23
-R24
-R25
+R30
+R31
+R32
 !i113 1
 R10
 R11
 vcounter8bit
-R19
+R26
 !i10b 1
 !s100 ljezM]o16nPeHehE`lE^F1
 IaRcM;a=ML12I``O_3E[cE1
 R2
 R0
-Z32 w1574047772
-Z33 8drawCards.v
-Z34 FdrawCards.v
+Z39 w1574047772
+Z40 8drawCards.v
+Z41 FdrawCards.v
 L0 119
 R6
 r1
 !s85 0
 31
-R23
-R24
-R25
+R30
+R31
+R32
 !i113 1
 R10
 R11
@@ -166,7 +188,7 @@ R0
 R13
 R14
 R15
-Z35 L0 76
+Z42 L0 76
 R6
 r1
 !s85 0
@@ -178,23 +200,23 @@ R18
 R10
 R11
 vdatapathControl
-R19
+R26
 !i10b 1
 !s100 :kY9HGU76dE29aEz[:9@@2
 IRHSIb1VO]SLB0ELEi`ZOl1
 R2
 R0
-Z36 w1574715973
+Z43 w1574715973
 R14
 R15
-R35
+R42
 R6
 r1
 !s85 0
 31
-R23
-R24
-R25
+R30
+R31
+R32
 !i113 1
 R10
 R11
@@ -222,67 +244,67 @@ R10
 R11
 ndraw@cards
 vdrawSymbol1
-R19
+R26
 !i10b 1
 !s100 E77mnM3_Xi]a9R^bJfaeG3
 IU2>WKd05U00Yb2>[HzOnT2
 R2
 R0
-R20
-R21
-R22
+R27
+R28
+R29
 L0 1
 R6
 r1
 !s85 0
 31
-R23
-R24
-R25
+R30
+R31
+R32
 !i113 1
 R10
 R11
 ndraw@symbol1
 vdrawSymbol2
-R19
+R26
 !i10b 1
 !s100 @`mMBMgkz=PJ2IYB8XT=Z2
 IeCCXY]DbSEcfgg>VE9O^I2
 R2
 R0
-R26
-R27
-R28
+R33
+R34
+R35
 L0 1
 R6
 r1
 !s85 0
 31
-R23
-R24
-R25
+R30
+R31
+R32
 !i113 1
 R10
 R11
 ndraw@symbol2
 vdrawSymbol3
-R19
+R26
 !i10b 1
 !s100 PgHi;mLKnMUc3ocZJfnI^2
 IFogUj1kz;gCTOLb8P^WFG2
 R2
 R0
-R29
-R30
-R31
+R36
+R37
+R38
 L0 1
 R6
 r1
 !s85 0
 31
-R23
-R24
-R25
+R30
+R31
+R32
 !i113 1
 R10
 R11
@@ -294,7 +316,7 @@ vdrawSymbols
 I5Z?Rm[hn^IKaFPE`CN1j20
 R2
 R0
-R32
+R39
 R14
 R15
 L0 34
@@ -310,13 +332,13 @@ R10
 R11
 ndraw@symbols
 vfinalProject
-R19
+R26
 !i10b 1
 !s100 n7S;9ff1ioW>zTBX`>fj>0
 I;0N3nGllUY9Td32<9l9OI0
 R2
 R0
-R36
+R43
 R14
 R15
 L0 1
@@ -324,52 +346,52 @@ R6
 r1
 !s85 0
 31
-R23
-R24
-R25
+R30
+R31
+R32
 !i113 1
 R10
 R11
 nfinal@project
 vflipflop
-R19
+R26
 !i10b 1
 !s100 UYG@mR[nz<J?dZ02Wz3C@0
 IT7cmInk;4B8fMm0X?>V@n1
 R2
 R0
-R32
-R33
-R34
+R39
+R40
+R41
 L0 151
 R6
 r1
 !s85 0
 31
-R23
-R24
-R25
+R30
+R31
+R32
 !i113 1
 R10
 R11
 vflipflop2
-R19
+R26
 !i10b 1
 !s100 685aYEeeD<KCM92;eMliY0
 IO3Y>;>MQX@`9X<d<?zDW@1
 R2
 R0
-R20
-R21
-R22
+R27
+R28
+R29
 L0 225
 R6
 r1
 !s85 0
 31
-R23
-R24
-R25
+R30
+R31
+R32
 !i113 1
 R10
 R11
@@ -395,45 +417,45 @@ R18
 R10
 R11
 vrandGen
-Z37 !s110 1574783033
+R19
 !i10b 1
-!s100 gim=OHj0RMR]Qe:nho`?L1
-I86UeY?HaH?2c2ZcN`[?0X3
+!s100 9YMo[HY_5KT]ZXJJY1D1W3
+I0;YhG<5GNBN[;CgjGPEej2
 R2
 R0
-Z38 w1574783031
-Z39 8random.v
-Z40 Frandom.v
+R20
+R21
+R22
 L0 1
 R6
 r1
 !s85 0
 31
-Z41 !s108 1574783033.000000
-Z42 !s107 random.v|
-Z43 !s90 -reportprogress|300|-timescale|1ns/1ns|random.v|
+R23
+R24
+R25
 !i113 1
 R10
 R11
 nrand@gen
 vrandomCounter
-R37
+!s110 1574783033
 !i10b 1
 !s100 8`7[^j`mBU`K<eE95[LT62
 I>GW40ol8c8QKm76EKne^d2
 R2
 R0
-R38
-R39
-R40
+w1574783031
+R21
+R22
 L0 103
 R6
 r1
 !s85 0
 31
-R41
-R42
-R43
+!s108 1574783033.000000
+R24
+R25
 !i113 1
 R10
 R11
@@ -446,16 +468,16 @@ Im?Ai;@[[1I9QCG?cH7HI73
 R2
 R0
 w1574197619
-R39
-R40
+R21
+R22
 L0 1
 R6
 r1
 !s85 0
 31
 !s108 1574200439.000000
-R42
-R43
+R24
+R25
 !i113 1
 R10
 R11
@@ -482,3 +504,25 @@ r1
 R10
 R11
 nrandom@generater
+vrG
+R19
+!i10b 1
+!s100 hXz:4k^oB>aN2Rd^<D0282
+IDZaaWPbjd?:_<3]cH<=@S0
+R2
+R0
+R20
+R21
+R22
+L0 91
+R6
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R10
+R11
+nr@g

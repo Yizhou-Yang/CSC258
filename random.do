@@ -22,5 +22,5 @@ add wave {/*}
 force {reset_n} 0 0, 1 1
 run 2ns
 force {clk} 1 0, 0 1 -r 2
-force {start} 1 5
+force {start} 1 10
 run 500ns
