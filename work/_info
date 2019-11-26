@@ -9,31 +9,53 @@ z2
 cModel Technology
 Z0 dC:/Users/y7868/Documents/GitHub/CSC258
 vaddtoxy
-Z1 !s110 1574795907
+Z1 !s110 1574805116
 !i10b 1
-!s100 oKOPnAV4beEULd:SN7YJ[2
-IAdKVCSJ9lAOmR2O?ALcQM2
+!s100 <T`2hD4G]Ui^@9jdRck^[2
+IDiS]84PVX:=oOXX5JDg5j3
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-Z3 w1574786896
+Z3 w1574805112
 Z4 8clear.v
 Z5 Fclear.v
-L0 26
+L0 28
 Z6 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z7 !s108 1574795907.000000
+Z7 !s108 1574805116.000000
 Z8 !s107 clear.v|
 Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|clear.v|
 !i113 1
 Z10 o-timescale 1ns/1ns
 Z11 tCvgOpt 0
+vcancelCards
+!s110 1574805132
+!i10b 1
+!s100 YLIlS3GJ255;RTnFX;<IQ1
+IZPoW06zFVnl<m1QX86WMM2
+R2
+R0
+w1574804441
+8clearDatapath.v
+FclearDatapath.v
+L0 1
+R6
+r1
+!s85 0
+31
+!s108 1574805132.000000
+!s107 clearDatapath.v|
+!s90 -reportprogress|300|-timescale|1ns/1ns|clearDatapath.v|
+!i113 1
+R10
+R11
+ncancel@cards
 vclearCards
 R1
 !i10b 1
-!s100 BX_bQdMRSbg54?kjHd::_0
-IK6n>;WlCC[E9HZ0<z5gN93
+!s100 GkikPbGP1Jf3Dk`Y^8NRQ3
+I2Z=^f=ZW9PLR8e_hL@HzV3
 R2
 R0
 R3
@@ -73,7 +95,7 @@ Z18 !s90 -reportprogress|300|-timescale|1ns/1ns|drawCards.v|drawSymbol1.v|drawSy
 R10
 R11
 vCounter
-Z19 !s110 1574795966
+Z19 !s110 1574804022
 !i10b 1
 !s100 6QChn2:z7YT=YbZLP34^90
 IE8<knQXO^baL20`lSWf>f1
@@ -87,7 +109,7 @@ R6
 r1
 !s85 0
 31
-Z24 !s108 1574795966.000000
+Z24 !s108 1574804022.000000
 Z25 !s107 random.v|
 Z26 !s90 -reportprogress|300|-timescale|1ns/1ns|random.v|
 !i113 1

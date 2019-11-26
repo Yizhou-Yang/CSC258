@@ -1,5 +1,5 @@
-module clearCards(reset_n,clk,x0, y0, x, y, colour, next);
-	input reset_n, clk;
+module clearCards(reset_n,clk,in,x0, y0, x, y, colour, next);
+	input reset_n, clk,in;
 	input [7:0] x0;
 	input [6:0] y0;
 	output [7:0] x;
@@ -8,12 +8,14 @@ module clearCards(reset_n,clk,x0, y0, x, y, colour, next);
 	output reg next;
 	
 	assign colour = 3'b000;
-	addtoxy xy(.x(x0), .y(y0), .reset_n(reset_n) ,.clk(clk), .x_out(x), .y_out(y));
+	addtoxy xy(.x(x0), .y(y0),.in(in), .reset_n(reset_n) ,.clk(clk), .x_out(x), .y_out(y));
 
-	always @(posedge clk)
+	always @(*)
 	begin
 			if(x == (x0 + 15) && y == (y0 + 15)) 
 				next <= 1;
+			if(x == (x0 + 3) && y == (y0 + 3)) 
+				next <= 0;
 	end
 	
 	always @(*)
@@ -23,10 +25,10 @@ module clearCards(reset_n,clk,x0, y0, x, y, colour, next);
 	end
 endmodule
 
-module addtoxy(x, y, reset_n, clk, x_out, y_out);
+module addtoxy(x, y, in, reset_n, clk, x_out, y_out);
 	input [7:0] x;
 	input [6:0] y;
-	input reset_n;
+	input reset_n, in;
 	input clk;
 	output reg [7:0] x_out;
 	output reg [6:0] y_out;
@@ -35,19 +37,18 @@ module addtoxy(x, y, reset_n, clk, x_out, y_out);
 	
 	always @(posedge clk)
 	begin
-		if(count != 8'b11111111) 
-			count <= count + 1; 	
+		count <= count + 1;
+	end
+	
+	always @(posedge in or negedge reset_n)begin
+			x_out <= 0;
+			y_out <= 0;
+			count <= 0;
 	end
 	
 	always @(*)
 	begin
-		if (!reset_n)
-		begin
-			x_out = 0;
-			y_out = 0;
-			count = 0;
-		end
-		else begin
+		if(in) begin
 			x_out = x + count[3:0];
 			y_out = y + count[7:4];
 		end

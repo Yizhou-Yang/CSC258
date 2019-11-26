@@ -21,8 +21,7 @@ add wave {/*}
 # Set input values usingthe force command, signal names need to be in {} brackets.
 force {reset_n} 0 0, 1 1
 run 2ns
-force {in} 1 50
-force {x0} 0
-force {y0} 0
+force {in} 1 100
+force {data_in} 8#001011101 50
 force {clk} 1 0, 0 1 -r 2
 run 5000ns 
