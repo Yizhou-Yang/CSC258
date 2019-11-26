@@ -2,8 +2,9 @@ module finalProject
 	(
 		CLOCK_50,						//	On Board 50 MHz
 		// Your inputs and outputs here
-        KEY,
-        SW,
+      KEY,
+      SW,
+		HEX0, HEX2, HEX4,
 //		  PS2_DAT, PS2_CLK,
 		// The ports below are for the VGA output.  Do not change.
 		VGA_CLK,   						//	VGA Clock
@@ -21,6 +22,7 @@ module finalProject
 	input   [3:0]   KEY;
 
 	// Declare your inputs and outputs here
+	output [6:0] HEX0, HEX2, HEX4;
 	// Do not change the following outputs
 	output			VGA_CLK;   				//	VGA Clock
 	output			VGA_HS;					//	VGA H_SYNC
@@ -76,21 +78,20 @@ module finalProject
 		defparam VGA.BACKGROUND_IMAGE = "black.mif";
 endmodule
 
-module datapathControl(reset_n, clk, in, selections, selectdone, x, y, colour, writeEn);
+module datapathControl(reset_n, clk, in, selections, selectdone, x, y, colour, writeEn, HEX0, HEX2, HEX4);
 	input reset_n, clk, in, selectdone;
 	input [3:0] selections;
 	output [7:0] x;
 	output [6:0] y;
 	output [2:0] colour;
 	output writeEn;
+	output [6:0] HEX0, HEX2, HEX4;
 	
 	wire [7:0] xin;
 	wire [6:0] yin;
 	wire [3:0] select;
 	wire go0, go1, go2, go4, go5, go6, go7, go8;
-	wire [1:0] rand;
-	wire next1, next2, next3;
-	wire [6:0] counter;
+	wire next1, next5;
 	wire correct;
 	
 	wire [4:0] state, state2;
@@ -118,9 +119,11 @@ module datapathControl(reset_n, clk, in, selections, selectdone, x, y, colour, w
 			.y(y), 
 			.colour(colour),
 			.next1(next1),
-			.next2(next2),
-			.next3(next3),
-			.correct(correct));
+			.next5(next5),
+			.correct(correct),
+			.HEX0(HEX0),
+			.HEX2(HEX2),
+			.HEX4(HEX4));
 	control ctr(
 			.reset_n(reset_n), 
 			.clk(clk),
@@ -146,7 +149,7 @@ module datapathControl(reset_n, clk, in, selections, selectdone, x, y, colour, w
 endmodule
 
 module datapath(reset_n, clk, in, xin, yin, select, selections, random,
-					 go0, go1, go2, go4, go5, go6, go7, go8, x, y, colour, next1, next2, next3, correct);
+					 go0, go1, go2, go4, go5, go6, go7, go8, x, y, colour, next1, next5, correct, HEX0, HEX2, HEX4);
 	input reset_n, clk, in;
 	input [3:0] select;
 	input [7:0] xin;
@@ -157,10 +160,11 @@ module datapath(reset_n, clk, in, xin, yin, select, selections, random,
 	output reg [2:0] colour;
 	output reg [7:0] x;
 	output reg [6:0] y;
-	output next1, next2, next3;
+	output next1, next5;
 	output reg correct;
+	output [6:0] HEX0, HEX2, HEX4;
 
-	wire next0, next4, next5;
+	wire next0, next2, next3, next4;
 	wire [7:0] x0, x1, x2, x3, x4, x5;
 	wire [6:0] y0, y1, y2, y3, y4, y5;
 	wire [2:0] colour0, colour1, colour2, colour3, colour4, colour5;
@@ -179,6 +183,11 @@ module datapath(reset_n, clk, in, xin, yin, select, selections, random,
 	reg [1:0] select_symbol;
 	reg [5:0] selected_symbols;
 	reg [8:0] selected_locations;
+	
+	hex hex0(.HEX0(HEX0), .SW({1'b0, selected_locations[2:0]}));
+	hex hex1(.HEX0(HEX2), .SW({1'b0, selected_locations[5:3]}));
+	hex hex2(.HEX0(HEX4), .SW({1'b0, selected_locations[8:6]}));
+	
 	always @(*)
 	begin
 		case (selections)
@@ -500,22 +509,27 @@ module control(reset_n, clk, go0, go1, go2, go3, go4, go5, go6, go7, go8, correc
 				S_SELECT3: select = 4'b0111;
 				S_DONE2: temp = 0;
 				endcase
+				writeEn = 1'b0;
 			end
 			S_DETERMINE1:
 			begin
 				select = 4'b1000;
+				writeEn = 1'b0;
 			end
 			S_CANCELCARDS:
 			begin
 				select = 4'b1001;
+				writeEn = 1'b1;
 			end
 			S_DETERMINE2:
 			begin
 				select = 4'b1010;
+				writeEn = 1'b0;
 			end
 			S_DONE3:
 			begin
 				select = 4'b1011;
+				writeEn = 1'b0;
 			end
 		endcase
 	end
