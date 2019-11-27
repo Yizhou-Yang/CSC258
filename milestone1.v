@@ -46,7 +46,7 @@ module finalProject
 			.reset_n(KEY[0]),
 			.clk(CLOCK_50), 
 			.in(SW[0]),
-			.selections(SW[4:1]),
+			.selections(SW[9:1]),
 			.selectdone(KEY[3]),
 			.x(x), 
 			.y(y), 
@@ -80,7 +80,7 @@ endmodule
 
 module datapathControl(reset_n, clk, in, selections, selectdone, x, y, colour, writeEn, HEX0, HEX2, HEX4);
 	input reset_n, clk, in, selectdone;
-	input [3:0] selections;
+	input [8:0] selections;
 	output [7:0] x;
 	output [6:0] y;
 	output [2:0] colour;
@@ -93,10 +93,13 @@ module datapathControl(reset_n, clk, in, selections, selectdone, x, y, colour, w
 	wire go0, go1, go2, go4, go5, go6, go7, go8;
 	wire next1, next5;
 	wire correct;
+	wire [5:0] selected_symbols;
+	wire [11:0] selected_locations;
 	
 	wire [4:0] state, state2;
 	wire [17:0] random;
-	assign random = 18'b000010010001011010;
+//	assign random = 18'b000010010001011010;
+	randGen rg0(.clk(clk), .reset_n(reset_n), .start(in), .rand_out(random));
 	
 	datapath dp(
 			.reset_n(reset_n), 
@@ -123,7 +126,9 @@ module datapathControl(reset_n, clk, in, selections, selectdone, x, y, colour, w
 			.correct(correct),
 			.HEX0(HEX0),
 			.HEX2(HEX2),
-			.HEX4(HEX4));
+			.HEX4(HEX4),
+			.selected_symbols(selected_symbols),
+			.selected_locations(selected_locations));
 	control ctr(
 			.reset_n(reset_n), 
 			.clk(clk),
@@ -149,12 +154,12 @@ module datapathControl(reset_n, clk, in, selections, selectdone, x, y, colour, w
 endmodule
 
 module datapath(reset_n, clk, in, xin, yin, select, selections, random,
-					 go0, go1, go2, go4, go5, go6, go7, go8, x, y, colour, next1, next5, correct, HEX0, HEX2, HEX4);
+					 go0, go1, go2, go4, go5, go6, go7, go8, x, y, colour, next1, next5, correct, HEX0, HEX2, HEX4, selected_symbols, selected_locations);
 	input reset_n, clk, in;
 	input [3:0] select;
 	input [7:0] xin;
 	input [6:0] yin;
-	input [3:0] selections;
+	input [8:0] selections;
 	input [17:0] random;
 	output reg go0, go1, go2, go4, go5, go6, go7, go8;
 	output reg [2:0] colour;
@@ -163,6 +168,8 @@ module datapath(reset_n, clk, in, xin, yin, select, selections, random,
 	output next1, next5;
 	output reg correct;
 	output [6:0] HEX0, HEX2, HEX4;
+	output reg [5:0] selected_symbols;
+	output reg [11:0] selected_locations;
 
 	wire next0, next2, next3, next4;
 	wire [7:0] x0, x1, x2, x3, x4, x5;
@@ -181,39 +188,56 @@ module datapath(reset_n, clk, in, xin, yin, select, selections, random,
 	
 	// selected_symbol hold selection, select_symbol is the current selection
 	reg [1:0] select_symbol;
-	reg [5:0] selected_symbols;
-	reg [8:0] selected_locations;
+//	reg [5:0] selected_symbols;
+	reg [3:0] select_location;
+//	reg [11:0] selected_locations;
 	
-	hex hex0(.HEX0(HEX0), .SW({1'b0, selected_locations[2:0]}));
-	hex hex1(.HEX0(HEX2), .SW({1'b0, selected_locations[5:3]}));
-	hex hex2(.HEX0(HEX4), .SW({1'b0, selected_locations[8:6]}));
+	hex hex0(.HEX0(HEX0), .SW(selected_locations[3:0]));
+	hex hex1(.HEX0(HEX2), .SW(selected_locations[7:4]));
+	hex hex2(.HEX0(HEX4), .SW(selected_locations[11:8]));
 	
 	always @(*)
 	begin
 		case (selections)
-		4'b0001: select_symbol = random[17:16];
-		4'b0010: select_symbol = random[15:14];
-		4'b0011: select_symbol = random[13:12];
-		4'b0100: select_symbol = random[11:10];
-		4'b0101: select_symbol = random[9:8];
-		4'b0110: select_symbol = random[7:6];
-		4'b0111: select_symbol = random[5:4];
-		4'b1000: select_symbol = random[3:2];
-		4'b1001: select_symbol = random[1:0];
+		9'b000000001: select_symbol = random[17:16];
+		9'b000000010: select_symbol = random[15:14];
+		9'b000000100: select_symbol = random[13:12];
+		9'b000001000: select_symbol = random[11:10];
+		9'b000010000: select_symbol = random[9:8];
+		9'b000100000: select_symbol = random[7:6];
+		9'b001000000: select_symbol = random[5:4];
+		9'b010000000: select_symbol = random[3:2];
+		9'b100000000: select_symbol = random[1:0];
+		endcase
+	end
+	
+	always @(*)
+	begin
+		case (selections)
+			9'b000000001: select_location = 4'b0001;
+			9'b000000010: select_location = 4'b0010;
+			9'b000000100: select_location = 4'b0011;
+			9'b000001000: select_location = 4'b0100;
+			9'b000010000: select_location = 4'b0101;
+			9'b000100000: select_location = 4'b0110;
+			9'b001000000: select_location = 4'b0111;
+			9'b010000000: select_location = 4'b1000;
+			9'b100000000: select_location = 4'b1001;
 		endcase
 	end
 
 	always @(posedge clk or negedge reset_n )
 	begin
 		if(reset_n == 1'b0)
-		begin
-			colour = 3'b000;
-			x = 8'b00000000;
-			y = 7'b0000000;
-			go0 = 0;
-			go1 = 0;
-			go2 = 0;
-		end
+			begin
+				colour = 3'b000;
+				x = 8'b00000000;
+				y = 7'b0000000;
+				go0 = 0;
+				go1 = 0;
+				go2 = 0;
+				selected_locations = 12'd0;
+			end
 		else
 		begin
 			case (select)
@@ -266,17 +290,17 @@ module datapath(reset_n, clk, in, xin, yin, select, selections, random,
 			end
 			4'b0101: begin
 				selected_symbols[1:0] <= select_symbol;
-				selected_locations[2:0] <= selections;
+				selected_locations[3:0] <= select_location;
 				correct <= 1'b0;
 			end
 			4'b0110: begin
 				selected_symbols[3:2] <= select_symbol;
-				selected_locations[5:3] <= selections;
+				selected_locations[7:4] <= select_location;
 				correct <= 1'b0;
 			end
 			4'b0111: begin
 				selected_symbols[5:4] <= select_symbol;
-				selected_locations[8:6] <= selections;
+				selected_locations[11:8] <= select_location;
 				if(selected_symbols[5:4] == selected_symbols[3:2] && selected_symbols[5:4] == selected_symbols[1:0])
 					correct <= 1'b1;
 				else
@@ -312,7 +336,13 @@ module datapath(reset_n, clk, in, xin, yin, select, selections, random,
 				end
 			end
 			default: begin
-			
+				colour = 3'b000;
+				x = 8'b00000000;
+				y = 7'b0000000;
+				go0 = 0;
+				go1 = 0;
+				go2 = 0;
+				selected_locations = 12'd0;
 			end
 			endcase
 		end
@@ -348,6 +378,7 @@ module control(reset_n, clk, go0, go1, go2, go3, go4, go5, go6, go7, go8, correc
 				  S_DRAWSCORE = 5'b01010,
 				  S_DONE = 5'b01011,
 				  
+				  S_WAIT = 5'b10100,
 				  S_SELECT1 = 5'b01100,
 				  S_SELECT2 = 5'b01101,
 				  S_SELECT3 = 5'b01110,
@@ -375,7 +406,7 @@ module control(reset_n, clk, go0, go1, go2, go3, go4, go5, go6, go7, go8, correc
 			// consider adding a done state
 			S_DRAWSYMBOL9: begin
 					next_state = go1 ? S_DONE : S_DRAWSYMBOL9;
-					next_state2 = S_SELECT1;
+					next_state2 = S_WAIT;
 			end
 			S_DONE: next_state = S_DONE;
 			
@@ -384,7 +415,7 @@ module control(reset_n, clk, go0, go1, go2, go3, go4, go5, go6, go7, go8, correc
 					next_state = S_CANCELCARDS;
 				else if(go5)  begin//incorrect go back to selection state
 					next_state = S_DONE;
-					next_state2 = S_SELECT1;
+					next_state2 = S_WAIT;
 				end
 				else
 					next_state = S_DETERMINE1;
@@ -394,7 +425,7 @@ module control(reset_n, clk, go0, go1, go2, go3, go4, go5, go6, go7, go8, correc
 				if(go7) //done
 					next_state = S_DONE2;
 				else if(go8) begin//not done go back to selection state
-					next_state2 = S_SELECT1;
+					next_state2 = S_WAIT;
 					next_state = S_DONE;
 				end
 				else
@@ -410,6 +441,7 @@ module control(reset_n, clk, go0, go1, go2, go3, go4, go5, go6, go7, go8, correc
 		if(current_state!=S_DRAWSYMBOL9 && current_state!=S_DETERMINE1)
 		begin
 			case(current_state2)
+				S_WAIT : next_state2 <= S_SELECT1;
 				S_SELECT1: next_state2 <= S_SELECT2;
 				S_SELECT2: next_state2 <= S_SELECT3;
 				//consider adding done state
@@ -418,7 +450,7 @@ module control(reset_n, clk, go0, go1, go2, go3, go4, go5, go6, go7, go8, correc
 					next_state <= S_DETERMINE1;
 				end
 				S_DONE2: next_state2 <= S_DONE2;
-				default: next_state2 <= S_SELECT1;
+				default: next_state2 <= S_WAIT;
 			endcase
 		end
 	end
