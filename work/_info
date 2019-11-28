@@ -9,21 +9,21 @@ z2
 cModel Technology
 Z0 dC:/Users/y7868/Documents/GitHub/CSC258
 vadd
-Z1 !s110 1574959887
+Z1 !s110 1574964771
 !i10b 1
-!s100 ]leQaWfQ48BbHcJm7oCiD3
-I0MK<ZFhD:ddnMejDBCmV90
+!s100 UdoPI^kZA:l8g1i7aE5W]1
+IGXikjnzdo<PTlW4BK5Zko1
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-Z3 w1574959880
+Z3 w1574964765
 Z4 8clear.v
 Z5 Fclear.v
-L0 29
+L0 30
 Z6 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z7 !s108 1574959887.000000
+Z7 !s108 1574964771.000000
 Z8 !s107 clear.v|
 Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|clear.v|
 !i113 1
@@ -51,13 +51,13 @@ R9
 R10
 R11
 vcancelCards
-!s110 1574805132
+!s110 1574964824
 !i10b 1
-!s100 YLIlS3GJ255;RTnFX;<IQ1
-IZPoW06zFVnl<m1QX86WMM2
+!s100 zgINSRJo<:0fLW]V0:znE1
+IK1eI6DWiEml:fL_hId8M21
 R2
 R0
-w1574804441
+w1574962691
 8clearDatapath.v
 FclearDatapath.v
 L0 1
@@ -65,7 +65,7 @@ R6
 r1
 !s85 0
 31
-!s108 1574805132.000000
+!s108 1574964824.000000
 !s107 clearDatapath.v|
 !s90 -reportprogress|300|-timescale|1ns/1ns|clearDatapath.v|
 !i113 1
@@ -75,8 +75,8 @@ ncancel@cards
 vclearCards
 R1
 !i10b 1
-!s100 bW6hL_hKVBMk`RIbB5H;<2
-IP@5=k<29T5ShQT5fVYl^A0
+!s100 :z=bW4P[KmOTC3oR85iK`2
+I[^BGmDb9d3l13miaWRDOf0
 R2
 R0
 R3
@@ -116,108 +116,108 @@ Z18 !s90 -reportprogress|300|-timescale|1ns/1ns|drawCards.v|drawSymbol1.v|drawSy
 R10
 R11
 vCounter
-Z19 !s110 1574804022
+Z19 !s110 1574967352
 !i10b 1
-!s100 6QChn2:z7YT=YbZLP34^90
-IE8<knQXO^baL20`lSWf>f1
+!s100 W6nPQh@f4D`_T<UIWOLDg2
+I<4WNAcmRi<b6zz]Pe>;d_2
 R2
 R0
-Z20 w1574794100
+Z20 w1574967226
 Z21 8random.v
 Z22 Frandom.v
-Z23 L0 119
+L0 118
 R6
 r1
 !s85 0
 31
-Z24 !s108 1574804022.000000
-Z25 !s107 random.v|
-Z26 !s90 -reportprogress|300|-timescale|1ns/1ns|random.v|
+Z23 !s108 1574967352.000000
+Z24 !s107 random.v|
+Z25 !s90 -reportprogress|300|-timescale|1ns/1ns|random.v|
 !i113 1
 R10
 R11
 n@counter
 vcounter1
-Z27 !s110 1574717747
+Z26 !s110 1574717747
 !i10b 1
 !s100 =kloV;^:Wk3h5La<Vfgg[0
 IU1@KT1fF?@L]m<YaEBJSM2
 R2
 R0
-Z28 w1574196129
-Z29 8drawSymbol1.v
-Z30 FdrawSymbol1.v
+Z27 w1574196129
+Z28 8drawSymbol1.v
+Z29 FdrawSymbol1.v
 L0 192
 R6
 r1
 !s85 0
 31
-Z31 !s108 1574717747.000000
-Z32 !s107 random_copy.v|random.v|milestone1.v|drawSymbol3.v|drawSymbol2.v|drawSymbol1.v|drawScore.v|drawCards.v|clear.v|
-Z33 !s90 -reportprogress|300|-timescale|1ns/1ns|clear.v|drawCards.v|drawScore.v|drawSymbol1.v|drawSymbol2.v|drawSymbol3.v|milestone1.v|random.v|random_copy.v|
+Z30 !s108 1574717747.000000
+Z31 !s107 random_copy.v|random.v|milestone1.v|drawSymbol3.v|drawSymbol2.v|drawSymbol1.v|drawScore.v|drawCards.v|clear.v|
+Z32 !s90 -reportprogress|300|-timescale|1ns/1ns|clear.v|drawCards.v|drawScore.v|drawSymbol1.v|drawSymbol2.v|drawSymbol3.v|milestone1.v|random.v|random_copy.v|
 !i113 1
 R10
 R11
 vcounter2
-R27
+R26
 !i10b 1
 !s100 lM@C9[MN?;9i3eR01>FB=1
 IT]a=d8HBO_Gz>N?DVF:JF2
 R2
 R0
-Z34 w1574194066
-Z35 8drawSymbol2.v
-Z36 FdrawSymbol2.v
+Z33 w1574194066
+Z34 8drawSymbol2.v
+Z35 FdrawSymbol2.v
 L0 247
 R6
 r1
 !s85 0
 31
+R30
 R31
 R32
-R33
 !i113 1
 R10
 R11
 vcounter3
-R27
+R26
 !i10b 1
 !s100 eo_SXKMUPGG0XP:J>6:>G3
 IkoMT=UZElODa3cFh8fGVJ2
 R2
 R0
-Z37 w1574194083
-Z38 8drawSymbol3.v
-Z39 FdrawSymbol3.v
+Z36 w1574194083
+Z37 8drawSymbol3.v
+Z38 FdrawSymbol3.v
 L0 175
 R6
 r1
 !s85 0
 31
+R30
 R31
 R32
-R33
 !i113 1
 R10
 R11
 vcounter8bit
-R27
+R26
 !i10b 1
 !s100 ljezM]o16nPeHehE`lE^F1
 IaRcM;a=ML12I``O_3E[cE1
 R2
 R0
-Z40 w1574047772
-Z41 8drawCards.v
-Z42 FdrawCards.v
-R23
+Z39 w1574047772
+Z40 8drawCards.v
+Z41 FdrawCards.v
+L0 119
 R6
 r1
 !s85 0
 31
+R30
 R31
 R32
-R33
 !i113 1
 R10
 R11
@@ -231,7 +231,7 @@ R0
 R13
 R14
 R15
-Z43 L0 76
+Z42 L0 76
 R6
 r1
 !s85 0
@@ -243,23 +243,23 @@ R18
 R10
 R11
 vdatapathControl
-R27
+R26
 !i10b 1
 !s100 :kY9HGU76dE29aEz[:9@@2
 IRHSIb1VO]SLB0ELEi`ZOl1
 R2
 R0
-Z44 w1574715973
+Z43 w1574715973
 R14
 R15
-R43
+R42
 R6
 r1
 !s85 0
 31
+R30
 R31
 R32
-R33
 !i113 1
 R10
 R11
@@ -287,67 +287,67 @@ R10
 R11
 ndraw@cards
 vdrawSymbol1
-R27
+R26
 !i10b 1
 !s100 E77mnM3_Xi]a9R^bJfaeG3
 IU2>WKd05U00Yb2>[HzOnT2
 R2
 R0
+R27
 R28
 R29
-R30
 L0 1
 R6
 r1
 !s85 0
 31
+R30
 R31
 R32
-R33
 !i113 1
 R10
 R11
 ndraw@symbol1
 vdrawSymbol2
-R27
+R26
 !i10b 1
 !s100 @`mMBMgkz=PJ2IYB8XT=Z2
 IeCCXY]DbSEcfgg>VE9O^I2
 R2
 R0
+R33
 R34
 R35
-R36
 L0 1
 R6
 r1
 !s85 0
 31
+R30
 R31
 R32
-R33
 !i113 1
 R10
 R11
 ndraw@symbol2
 vdrawSymbol3
-R27
+R26
 !i10b 1
 !s100 PgHi;mLKnMUc3ocZJfnI^2
 IFogUj1kz;gCTOLb8P^WFG2
 R2
 R0
+R36
 R37
 R38
-R39
 L0 1
 R6
 r1
 !s85 0
 31
+R30
 R31
 R32
-R33
 !i113 1
 R10
 R11
@@ -359,7 +359,7 @@ vdrawSymbols
 I5Z?Rm[hn^IKaFPE`CN1j20
 R2
 R0
-R40
+R39
 R14
 R15
 L0 34
@@ -375,13 +375,13 @@ R10
 R11
 ndraw@symbols
 vfinalProject
-R27
+R26
 !i10b 1
 !s100 n7S;9ff1ioW>zTBX`>fj>0
 I;0N3nGllUY9Td32<9l9OI0
 R2
 R0
-R44
+R43
 R14
 R15
 L0 1
@@ -389,52 +389,52 @@ R6
 r1
 !s85 0
 31
+R30
 R31
 R32
-R33
 !i113 1
 R10
 R11
 nfinal@project
 vflipflop
-R27
+R26
 !i10b 1
 !s100 UYG@mR[nz<J?dZ02Wz3C@0
 IT7cmInk;4B8fMm0X?>V@n1
 R2
 R0
+R39
 R40
 R41
-R42
 L0 151
 R6
 r1
 !s85 0
 31
+R30
 R31
 R32
-R33
 !i113 1
 R10
 R11
 vflipflop2
-R27
+R26
 !i10b 1
 !s100 685aYEeeD<KCM92;eMliY0
 IO3Y>;>MQX@`9X<d<?zDW@1
 R2
 R0
+R27
 R28
 R29
-R30
 L0 225
 R6
 r1
 !s85 0
 31
+R30
 R31
 R32
-R33
 !i113 1
 R10
 R11
@@ -462,8 +462,8 @@ R11
 vrandGen
 R19
 !i10b 1
-!s100 8cLBYo6Q<h^VN4;9`VU;Q1
-I5H16TeH=]3;Og9cLj1F_P3
+!s100 8>VMhoekcAzZ@0@N:>GGj0
+Ih3^E=Eo?<;Sc:WnhAm_XA0
 R2
 R0
 R20
@@ -474,9 +474,9 @@ R6
 r1
 !s85 0
 31
+R23
 R24
 R25
-R26
 !i113 1
 R10
 R11
@@ -497,8 +497,8 @@ r1
 !s85 0
 31
 !s108 1574783033.000000
+R24
 R25
-R26
 !i113 1
 R10
 R11
@@ -519,8 +519,8 @@ r1
 !s85 0
 31
 !s108 1574200439.000000
+R24
 R25
-R26
 !i113 1
 R10
 R11
@@ -550,21 +550,21 @@ nrandom@generater
 vrG
 R19
 !i10b 1
-!s100 _HVa[?Q]k5d?c7Xb>@25C0
-IV2dED;0=JZ<[25kF<CncY2
+!s100 ?TFzg=@JFXl<:S39KW_UT0
+IhKbE`F6PR<8HC2O_RlchE3
 R2
 R0
 R20
 R21
 R22
-L0 93
+L0 87
 R6
 r1
 !s85 0
 31
+R23
 R24
 R25
-R26
 !i113 1
 R10
 R11

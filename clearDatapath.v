@@ -16,26 +16,28 @@ module cancelCards(reset_n,clk,in,data_in, xout, yout, colour, finish);
 	reg[7:0] x0;
 	reg[6:0] y0;
 	
-	localparam S1 = 5'd1, S2 = 5'd2, S3 = 5'd3, S_DONE = 5'd4;
+	localparam S1 = 5'd1, S2 = 5'd2, S3 = 5'd3, S_DONE = 5'd4,S1_WAIT = 5'd5, S2_WAIT = 5'd6;
 	
-	reg[5:0] current_state,next_state;
+	reg[4:0] current_state,next_state;
 	reg[2:0] count;
 
 	always @(*)begin
 		case(current_state)
-			S1:next_state = (count==1)?S2:S1;
-			S2:next_state = (count==2)?S3:S2;			
+			S1:next_state = (count== 1)?S1_WAIT:S1;
+			S1_WAIT:next_state =(count == 1)? S2:S1_WAIT;
+			S2:next_state = (count==2)?S2_WAIT:S2;	
+			S2_WAIT:next_state =(count==2)? S3:S2_WAIT;		
 			S3:next_state = (count==3)?S_DONE:S3;	
 			S_DONE:next_state = S_DONE;
 		default:next_state = S1;
 		endcase
 	end
 	
-	always @(posedge next)begin
-		if(!reset_n) begin
+	always @(posedge next or negedge reset_n)begin
+		if(!reset_n)
 			count <= 0;
-		end
-		count <= count + 1;
+		else
+			count <= count + 1;
 	end
 
 	always @(*)begin
@@ -50,6 +52,7 @@ module cancelCards(reset_n,clk,in,data_in, xout, yout, colour, finish);
 			S2:data = data2;
 			S3:data = data3;
 			S_DONE:finish = 1;
+			default: data = 0;
 		endcase
 		
 		case(data)
@@ -62,13 +65,14 @@ module cancelCards(reset_n,clk,in,data_in, xout, yout, colour, finish);
 			4'd7:begin	x0 = 8'd50; y0 = 7'd70;	end
 			4'd8:begin	x0 = 8'd70; y0 = 7'd70;	end
 			4'd9:begin	x0 = 8'd90; y0 = 7'd70;	end
+			default: begin x0 = 0; y0 = 0; end
 		endcase
 		
 	end
 		
 	always @(posedge clk) begin
 			if(!reset_n) 
-				current_state <= 0;		
+				current_state <= 1;		
 			else
 				current_state <= next_state;
 	end

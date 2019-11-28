@@ -19,7 +19,8 @@ add wave {/*}
 
 # First test case
 # Set input values using the force command, signal names need to be in {} brackets.
-force {reset_n} 1 0, 0 1, 1 5
+force {reset_n} 0 0, 1 1
+run 2ns
 force {clk} 1 0, 0 1 -r 2
 force {start} 1 50
 run 500ns

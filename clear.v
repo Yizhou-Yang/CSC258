@@ -18,10 +18,11 @@ module clearCards(reset_n,clk,in,x0, y0, x, y, colour, next);
 	begin
 			if(!reset_n)
 					next <= 0;
-			else if(x == (x0 + 15) && y == (y0 + 15)) 
+			else if(x == (x0 + 8'd15) && y == (y0 + 7'd15)) begin
 				if(count == 0)
 					next <= 1;
-			else if(x == (x0 + 1) && y == (y0 + 1)) 
+			end
+			else if(count == 8'd3)  
 					next <= 0;
 	end
 endmodule
@@ -36,11 +37,16 @@ module add(x, y, in, reset_n, clk, x_out, y_out,count);
 	//
 	output reg[7:0] count;
 	//
+	reg lock;
 	
-	always @(posedge clk)begin
-		if(!reset_n)
+	always @(posedge clk or negedge in)begin
+		if((!reset_n)||(!in))begin
 			count <= 0;
-		else if(in)
+			lock <= 0;
+		end
+		else if(in&&lock ==0)
+			lock <= 1;
+		else if(in&&lock == 1)
 			count <= count + 1;
 	end
 	

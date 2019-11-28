@@ -12,49 +12,29 @@ module randGen(clk, reset_n, start, rand_out);
 	
 	Counter r1(.clk(clk),.reset_n(reset_n),.out(out));
 	rG r2(.clk(clk),.reset_n(reset_n),.rand(rand));
-	
-	always @ (*)
-		begin
+
+		always @(posedge out or negedge reset_n) begin
 			if(!reset_n)begin
-				counter2 = 2'd0;
-				counter11 = 3'd0;
-				counter12 = 3'd0;
-				counter13 = 3'd0;
-				counter3 = 5'd0;
-				lock = 0;
-		end
-	end
-	
-		always @(*)begin
-				if (counter11 == 3'd3&& rand_in==2'b00) begin
-					rand_in = 2'b01;
-				end
-			  if (counter12 == 3'd3&&rand_in==2'b01) begin
-					rand_in = 2'b10;
-				end
-			  if (counter13 == 3'd3&&rand_in==2'b10) begin
-					rand_in = 2'b00;
-				end
-				if (counter11 == 3'd3&& rand_in==2'b00) begin
-					rand_in = 2'b01;
-				end
-				if (counter12 == 3'd3&&rand_in==2'b01) begin
-					rand_in = 2'b10;
-				end
-		end
-		
-		always @(posedge out) begin
-			if(start && reset_n) begin
+				counter11 <= 0;
+				counter12 <= 0;
+				counter13 <= 0;
+			end
+			
+			else if(start) begin
 				case(rand_in)
-					2'b00: counter11 = counter11+1;
-					2'b01: counter12 = counter12+1;
-					2'b10: counter13 = counter13+1;
+					2'b00: counter11 <= counter11+1;
+					2'b01: counter12 <= counter12+1;
+					2'b10: counter13 <= counter13+1;
 				endcase
 			end
 		end
 		
-		always@(posedge out)begin
-			if(start && reset_n && !lock) begin
+		always@(posedge out or negedge reset_n)begin
+			if(!reset_n)begin
+				lock <= 0;
+				counter3 <= 0;
+			end
+			else if(start && !lock) begin
 			  case(counter3)
 					5'd0:rand_out[1:0] <= rand_in;
 					5'd1:rand_out[3:2] <= rand_in;
@@ -75,16 +55,30 @@ module randGen(clk, reset_n, start, rand_out);
 
 	always @ (posedge clk) begin
 		//update the random in order, and move counter2 in case of 11.
-				
-			if(counter2 == 2'b10)
+			if (!reset_n)
+				counter2 <= 0;
+			else if(counter2 == 2'b10)
 				counter2 <= 2'b00;
 			else
 				counter2 <= counter2 + 1;
-		// update rand every clock cycle
 	end	
 	
+	wire[1:0] rand2;
+	assign rand2 = (rand == 2'b11)?counter2:rand;
 	always @ (posedge clk) begin
-		rand_in <= (rand == 2'b11)?counter2:rand;
+			  if(!reset_n) 
+					rand_in <= 2'b00;
+			  else if (counter11 == 3'd3&& rand2==2'b00) begin
+					rand_in <= 2'b01;
+				end
+			  else if (counter12 == 3'd3&&rand2==2'b01) begin
+					rand_in <= 2'b10;
+				end
+			  else if (counter13 == 3'd3&&rand2==2'b10) begin
+					rand_in <= 2'b00;
+			  end
+			  else 
+					rand_in <= rand2;
 	end
 	
 endmodule
@@ -98,9 +92,16 @@ module rG(clk, reset_n, rand);
 	wire feedback; 
 	
 	assign feedback = random[2] ^ random[1]; 
-	always @ (posedge clk) begin
-			random = random_next;
-			rand <= random[1:0];
+	always @ (posedge clk or negedge reset_n) begin
+			if(!reset_n)begin
+				rand <= 0;
+				random <= 3'b111;
+			end
+			
+			else begin
+				random <= random_next;
+				rand <= random[1:0];
+			end
 	end	
 	
 	always @ (*)
@@ -109,10 +110,8 @@ module rG(clk, reset_n, rand);
 	  random_next[0] = feedback;
 	  
 	  if(!reset_n)begin
-			random = 3'b111;
 			random_next = 3'b111;
-			rand = 2'b0;
-		end
+	  end
 	end
 endmodule
 
@@ -121,19 +120,15 @@ module Counter(clk,reset_n,out);
 	output reg out;
 	
 	reg[2:0] count;
-	
-	always @(*)
-	begin
-		if(!reset_n) begin
-			count = 3'd0;
-		end
-		out = count;
-	end
-	
 	always @(posedge clk)begin
-			count <= count + 1;
-			if(count == 3'd2)
-				out <= 1'b1;
-			else out <= 1'b0 ;
+			if(!reset_n) begin
+			count = 3'd0;
+			end
+			else begin
+				count <= count + 1;
+				if(count == 3'd2)
+					out <= 1'b1;
+				else out <= 1'b0 ;
+			end
 	end
 endmodule
