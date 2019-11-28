@@ -1,0 +1,4 @@
+Warning (10268): Verilog HDL information at random.v(101): always construct contains both blocking and non-blocking assignments File: C:/Users/y7868/Documents/GitHub/CSC258/random.v Line: 101
+Warning (10268): Verilog HDL information at milestone1.v(229): always construct contains both blocking and non-blocking assignments File: C:/Users/y7868/Documents/GitHub/CSC258/milestone1.v Line: 229
+Info (10281): Verilog HDL Declaration information at milestone1.v(170): object "HEX0" differs only in case from object "hex0" in the same scope File: C:/Users/y7868/Documents/GitHub/CSC258/milestone1.v Line: 170
+Info (10281): Verilog HDL Declaration information at milestone1.v(170): object "HEX2" differs only in case from object "hex2" in the same scope File: C:/Users/y7868/Documents/GitHub/CSC258/milestone1.v Line: 170
