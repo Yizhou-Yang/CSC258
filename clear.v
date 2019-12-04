@@ -39,7 +39,7 @@ module add(x, y, in, reset_n, clk, x_out, y_out,count);
 	//
 	reg lock;
 	
-	always @(posedge clk or negedge in)begin
+	always @(posedge clk or negedge in or negedge reset_n)begin
 		if((!reset_n)||(!in))begin
 			count <= 0;
 			lock <= 0;
