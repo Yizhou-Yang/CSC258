@@ -2,7 +2,7 @@
 //keyboardInterface kI(.keyboard_clk(PS2_CLK),data(PS2_DAT),clk(CLOCK_50),reset_n(reset_n),
 //												 read(),out())
 //read为1的时候开始录入，输出为out[3:0],每次弄完可能要把reset归0（目前没有）
-module keyboardInterface(keyboard_clk,data,clk,reset_n,out);
+module keyboardInterface(keyboard_clk,data,clk,reset_n,read,out);
 	input clk,data,keyboard_clk,reset_n,read;
 	output reg[3:0]out;
 	
@@ -16,12 +16,12 @@ module keyboardInterface(keyboard_clk,data,clk,reset_n,out);
 	end
 	
 	keyboard k0(.keyboard_clk(keyboard_clk), .keyboard_data(data), .clock50(clk), .reset(0),
-										.read(1), .scan_ready(scan_ready), .scan_code(scan_code));
+										.read(read), .scan_ready(scan_ready), .scan_code(scan_code));
 										
-	oneshot pulse (.pulse_out(read),.trigger_in(scan_ready),.clk(clk));
+	oneshot pulse (.pulse_out(read),. trigger_in(scan_ready),.clk(clk));
 	
 	always@(*)
-		if(scan_history[2] =='hF0)begin
+		if(scan_history[2]!='hF0)begin
 			case(scan_history[1])
 				'h16:out = 4'd1;
 				'h1E:out = 4'd2;
